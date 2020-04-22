@@ -1,6 +1,7 @@
+//All The References
 const addTodo = document.querySelector('.add');
 const list = document.querySelector('.todos');
-
+const search = document.querySelector('.search input');
 // Display new Todo In The Dom
 const generateTemplate = (todo) =>{
     const html = `
@@ -29,3 +30,21 @@ addTodo.addEventListener('submit' , event => {
         event.target.parentElement.remove();
     }
  });
+
+ //Function To Search The Term
+ const filterTodo = (term) =>{
+    Array.from(list.children)
+    .filter((todo )=> !todo.textContent.toLowerCase().includes(term))
+    .forEach((todo) =>todo.classList.add('filtered'));
+
+    Array.from(list.children)
+    .filter((todo )=> todo.textContent.toLowerCase().includes(term))
+    .forEach((todo) =>todo.classList.remove('filtered'));
+
+ }; 
+
+ // Keyup Event
+search.addEventListener('keyup' , () =>{
+    const term = search.value.trim().toLowerCase();
+    filterTodo(term);
+});
