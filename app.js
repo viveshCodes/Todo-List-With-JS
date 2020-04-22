@@ -1,5 +1,7 @@
 const addTodo = document.querySelector('.add');
 const list = document.querySelector('.todos');
+
+// Display new Todo In The Dom
 const generateTemplate = (todo) =>{
     const html = `
     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -9,6 +11,8 @@ const generateTemplate = (todo) =>{
     `
     list.innerHTML += html;
 };
+
+// Grab Todo From User
 addTodo.addEventListener('submit' , event => {
     event.preventDefault();
     const todo = addTodo.add.value.trim();
@@ -18,3 +22,10 @@ addTodo.addEventListener('submit' , event => {
     }
     
 });
+
+// Delete Todo 
+ list.addEventListener('click', event=>{
+    if(event.target.classList.contains('delete')){
+        event.target.parentElement.remove();
+    }
+ });
